@@ -1,4 +1,4 @@
-pip install pytelegrambotapi
+pip3 install pytelegrambotapi
 import telebot
 from collections import deque
 from telebot import types
