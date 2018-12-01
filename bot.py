@@ -15,7 +15,7 @@ def handle_start(message):
         user_markup.row("Хочу кофе", "Длина очереди?")
         user_markup.row("какой я по счету?", "Пропустить одного человека вперед", "Выйти из очереди")
         bot.send_message(message.chat.id, "Добро пожаловать:", reply_markup=user_markup)
-@bot.messenge_handler  (commands=['stop'] )
+@bot.message_handler  (commands=['stop'] )
 def handle_start (message):
         hide_markup = elebot.types.ReplyKeyboardMarkup ()
         bot.send_message(message.chat.id, "...:", reply_markup=hide_markup)
