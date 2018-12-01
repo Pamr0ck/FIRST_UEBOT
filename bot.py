@@ -24,11 +24,11 @@ markup.row("Сколько человек передо мной", "Пропус�
 bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
 
     elif message.text == "Хочу кофе":
-        bot.send_message(message.form_user.id, "Окей, я добавил тебя в очередь!:)")
+        bot.send_message(message.from_user.id, "Окей, я добавил тебя в очередь!:)")
         # добавить чувака в стэк
         
     elif message.text == "Пропустить одного человека вперед": # пропустить одного человека вперед
-        bot.send_message(message.form_user.id, "Ok...")
+        bot.send_message(message.from_user.id, "Ok...")
         
     elif message.text == "Сколько человек передо мной" : #показать номер человека в очереди
         
