@@ -42,7 +42,7 @@ def handle_text(message):
 
     elif message.text == "Show_queue":
         for i in queue:
-            bot.send_message(message.from_user.id, i)
+            bot.send_message(message.from_user.last_name, i)
       
     elif message.text == "Finish":
         bot.send_message(message.from_user.id, "Oh, I didn't expect you to be such a one-minute man!")
