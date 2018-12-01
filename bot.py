@@ -14,25 +14,22 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "Hello! I am HabrahabrExampleBot. How can i help you?")
         
 markup = types.ReplyKeyboardMarkup()
-markup.row('Хочу кофе', 'Длина очереди?')
-markup.row('Сколько человек передо мной', 'Пропустить одного человека вперед', 'Выйти из очереди')
+markup.row("Хочу кофе", "Длина очереди?")
+markup.row("Сколько человек передо мной", "Пропустить одного человека вперед", "Выйти из очереди")
 bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
 
-    elif message.text == "How are you?" or message.text == "How are u?":
-        bot.send_message(message.from_user.id, "I'm fine, thanks. And you?")
-
-    elif message.text == "Cofee":
-        bot.send_message(message.form_user.id, "You are added to the stack, well done! :)")
+    elif message.text == "Хочу кофе":
+        bot.send_message(message.form_user.id, "Окей, я добавил тебя в очередь!:)")
         # добавить чувака в стэк
         
-    elif message.text == "Step ahead": # пропустить одного человека вперед
+    elif message.text == "Пропустить одного человека вперед": # пропустить одного человека вперед
         bot.send_message(message.form_user.id, "Ok...")
         
-    elif message.text == "My number" : #показать номер человека в очереди
+    elif message.text == "Сколько человек передо мной" : #показать номер человека в очереди
         
-    elif message.text == "Show the queue" : #показать всю очередь
+    elif message.text == "Длина очрееди" : #показать всю очередь
 
-    elif message.text=='Finish': #выйти из очереди
+    elif message.text=='Выйти из очереди': #выйти из очереди
         bot.send_message(message.from_user.id, "Oh, I didn't expect you to be such a one-minute man!")
         bot.send_message(message.from_user.id, 'you next')
 
