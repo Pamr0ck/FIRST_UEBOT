@@ -25,7 +25,7 @@ def handle_text(message):
         
     elif message.text == "Show the queue" : #показать всю очередь
 
-    elif message.text=='Finish':
+    elif message.text=='Finish': #выйти из очереди
         bot.send_message(message.from_user.id, "Oh, I didn't expect you to be such a one-minute man!")
         bot.send_message(message.from_user.id, 'you next')
 
