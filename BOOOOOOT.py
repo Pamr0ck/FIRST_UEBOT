@@ -55,8 +55,8 @@ def handle_text(message):
             queue.popleft()
             queue_name.popleft()
         else:
-            queue.pop(N)
-            queue_name.pop(N)
+            queue.remove(message.from_user.id)
+            queue_name.remove(message.from_user.username)
 
     else: bot.send_message(message.from_user.id, "I can't understand you :c")
 
