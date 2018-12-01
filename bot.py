@@ -11,11 +11,12 @@ bot = telebot.TeleBot("782381386AAFLzg8wce1km24O2sspt_ObKHUwMeA_5yc")
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
     if message.text == "Hi":
-        bot.send_message(message.from_user.id, "Hello!
+        bot.send_message(message.from_user.id, "Hello!"
     keyboard = types.InlineKeyboardMarkup()
     callback_button = types.InlineKeyboardButton(text="Want a cup of coffee", callback_data="test")
     keyboard.add(callback_button)
-    
+    ot.send_message(message.chat.id, "Я – сообщение из обычного режима", reply_markup=keyboard)
+
 
 '''        
 markup = types.ReplyKeyboardMarkup()
