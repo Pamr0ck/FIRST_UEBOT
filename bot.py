@@ -1,5 +1,7 @@
 import telebot
 from collections import deque
+from telebot import types
+
 queue=deque() #массив с возможностью расширения и сжатия
 #queue.append('name')-добавляет ячейку с информацией (name) в массив queue
 #q.popleft()-удаляет нулевой элемент из массива и сдвигает все элементы на 1 влево
@@ -10,6 +12,11 @@ bot = telebot.TeleBot("782381386AAFLzg8wce1km24O2sspt_ObKHUwMeA_5yc")
 def handle_text(message):
     if message.text == "Hi":
         bot.send_message(message.from_user.id, "Hello! I am HabrahabrExampleBot. How can i help you?")
+        
+markup = types.ReplyKeyboardMarkup()
+markup.row('Хочу кофе', 'Длина очереди?')
+markup.row('Сколько человек передо мной', 'Пропустить одного человека вперед', 'Выйти из очереди')
+bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
 
     elif message.text == "How are you?" or message.text == "How are u?":
         bot.send_message(message.from_user.id, "I'm fine, thanks. And you?")
