@@ -51,7 +51,7 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "Oh, I didn't expect you would be such a one-minute man!")
         N = queue.index(message.from_user.id)
         if len(queue)>1 and N!=(len(queue)-1):
-            bot.send.message(message.queue[1], "You are next!!!!!!!!!")
+            bot.send.message(queue[1], "You are next!!!!!!!!!")
         queue.popleft()
         queue_name.popleft()
 
