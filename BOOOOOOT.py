@@ -24,9 +24,10 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "Better than you while you haven't any coffee")
 
     elif message.text == "Coffee":
-        bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
-        queue.append(message.from_user.id)
-        queue_name.append(message.from_user.username)
+        if message.from_user.id not in queue:
+            bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
+            queue.append(message.from_user.id)
+            queue_name.append(message.from_user.username)
     
     elif message.text =="Step_ahead":
         N = queue.index(message.from_user.id)
