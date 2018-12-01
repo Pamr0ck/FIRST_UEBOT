@@ -32,6 +32,7 @@ def handle_text(message):
         N = queue.index(message.from_user.id)
         if len(queue)>1 and N!=(len(queue)-1):
             queue[N + 1], queue[N] = queue[N], queue[N + 1]
+            queue_name[N + 1], queue_name[N] = queue_name[N], queue_name[N + 1]
             bot.send_message(message.from_user.id, "Ok.....")            
         else:
             bot.send_message(message.from_user.id,"You one")
