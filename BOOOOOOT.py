@@ -26,7 +26,7 @@ def handle_text(message):
     elif message.text == "Coffee":
         if message.from_user.id not in queue:
             bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
-            queue.append(from_user.id)
+            queue.append(message.from_user.id)
             queue_name.append(message.from_user.username)
     
     elif message.text =="Step_ahead":
