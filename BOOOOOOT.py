@@ -27,38 +27,38 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "I can't understand you :c")
 
 
-@bot.message_handler(commands=["How_are_you"])
+@bot.message_handler(content_types=["How_are_you"])
 def handle_text(message):
-    bot.send_message(message.chat.id, "I'm fine, thanks. And you?")
+    bot.send_message(message.from_user.id, "I'm fine, thanks. And you?")
 
 
-@bot.message_handler(commands=["Coffee"])
+@bot.message_handler(content_types=["Coffee"])
 def handle_text(message):
-    bot.send_message(message.chat.id, "You are added to the stack, well done! :)")
-    queue.append(message.chat.id)
+    bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
+    queue.append(message.from_user.id)
 
 
-@bot.message_handler(commands=["Step_ahead"])
+@bot.message_handler(content_types=["Step_ahead"])
 def handle_text(message):
-    bot.send_message(message.chat.id, "Ok.....")
-    N = queue.index(message.chat.id)
+    bot.send_message(message.from_user.id, "Ok.....")
+    N = queue.index(message.from_user.id)
     queue[N + 1], queue[N] = queue[N], queue[N + 1]
 
 
-@bot.message_handler(commands=["My_number"])
+@bot.message_handler(content_types=["My_number"])
 def handle_text(message):
-    bot.send_message(message.chat.id, "Ok.....Your number is ", queue.index(message.chat.id))
+    bot.send_message(message.from_user.id, "Ok.....Your number is ", queue.index(message.from_user.id))
 
 
-@bot.message_handler(commands=["Show_queue"])
+@bot.message_handler(content_types=["Show_queue"])
 def handle_text(message):
     for i in queue:
-        bot.send_message(message.chat.id, i)
+        bot.send_message(message.from_user.id, i)
 
 
-@bot.message_handler(commands=["Finish"])
+@bot.message_handler(content_types=["Finish"])
 def handle_text(message):
-    bot.send_message(message.chat.id, "Oh, I didn't expect you to be such a one-minute man!")
+    bot.send_message(message.from_user.id, "Oh, I didn't expect you to be such a one-minute man!")
     bot.send.message(message.queue[1], "You are next!!!!!!!!!")
     queue.popleft()
 
