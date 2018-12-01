@@ -47,12 +47,3 @@ def handle_text(message):
     bot.send.message(message.queue[1],"You are next!!!!!!!!!")
     queue.popleft()
 
-
-
-    elif message.text == 'Finish':  # выйти из очереди
-        bot.send_message(message.from_user.id, "Oh, I didn't expect you to be such a one-minute man!")
-        bot.send_message(message.from_user.id, 'you next')
-
-
-    else:
-        bot.send_message(message.from_user.id, "Sorry, i dont understand you.")
