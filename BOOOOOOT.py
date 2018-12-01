@@ -36,7 +36,8 @@ def handle_text(message):
             bot.send_message(message.from_user.id,"You one")
     elif message.text =="My_number":
         bot.send_message(message.from_user.id, "Ok.....Your number is ")
-        bot.send_message(queue.index(message.from_user.id))
+        N = queue.index(message.from_user.id)
+        bot.send_message(message.from_user.id,(N+1))
         
 
     elif message.text == "Show_queue":
