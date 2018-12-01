@@ -1,7 +1,8 @@
 import telebot
 from collections import deque
+
 queue = deque()  # массив с возможностью расширения и сжатия
-queue_name=deque()
+queue_name = deque()
 # queue.append('name')-добавляет ячейку с информацией (name) в массив queue
 # q.popleft()-удаляет нулевой элемент из массива и сдвигает все элементы на 1 влево
 bot = telebot.TeleBot("782381386:AAFLzg8wce1km24O2sspt_ObKHUwMeA_5yc")
@@ -28,36 +29,41 @@ def handle_text(message):
             bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
             queue.append(message.from_user.id)
             queue_name.append(message.from_user.username)
-    
-    elif message.text =="Step_ahead":
+
+    elif message.text == "Step_ahead":
         N = queue.index(message.from_user.id)
-        if len(queue)>1 and N!=(len(queue)-1):
+        if len(queue) > 1 and N != (len(queue) - 1):
             queue[N + 1], queue[N] = queue[N], queue[N + 1]
             queue_name[N + 1], queue_name[N] = queue_name[N], queue_name[N + 1]
-            bot.send_message(message.from_user.id, "Ok.....")            
+            bot.send_message(message.from_user.id, "Ok.....")
         else:
-            bot.send_message(message.from_user.id,"You one")
-    elif message.text =="My_number":
+            bot.send_message(message.from_user.id, "You one")
+    elif message.text == "My_number":
         bot.send_message(message.from_user.id, "Ok.....Your number is ")
         N = queue.index(message.from_user.id)
-        bot.send_message(message.from_user.id,(N+1))
-        
+        bot.send_message(message.from_user.id, (N + 1))
+
 
     elif message.text == "Show_queue":
         for i in queue_name:
             bot.send_message(message.from_user.id, str(i))
-      
+
     elif message.text == "Finish":
         bot.send_message(message.from_user.id, "Oh, I didn't expect you would be such a one-minute man!")
-        N = queue.index(message.from_user.id)
-        if len(queue)>1 and N==0:
-            bot.send.message(queue[1], "You are next!!!!!!!!!")
+        try:
+            N = queue.index(message.from_user.id)
+        except TypeError:
+            N = None
+        if len(queue) > 1 and N == 0:
+            bot.send_message(queue[1], "You are next!!!!!!!!!")
             queue.popleft()
             queue_name.popleft()
         else:
             queue.remove(message.from_user.id)
             queue_name.remove(message.from_user.username)
 
-    else: bot.send_message(message.from_user.id, "I can't understand you :c")
+    else:
+        bot.send_message(message.from_user.id, "I can't understand you :c")
+
 
 bot.polling(none_stop=True, interval=0)
