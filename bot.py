@@ -11,8 +11,13 @@ bot = telebot.TeleBot("782381386AAFLzg8wce1km24O2sspt_ObKHUwMeA_5yc")
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
     if message.text == "Hi":
-        bot.send_message(message.from_user.id, "Hello! I am HabrahabrExampleBot. How can i help you?")
-        
+        bot.send_message(message.from_user.id, "Hello!
+    keyboard = types.InlineKeyboardMarkup()
+    callback_button = types.InlineKeyboardButton(text="Want a cup of coffee", callback_data="test")
+    keyboard.add(callback_button)
+    
+
+'''        
 markup = types.ReplyKeyboardMarkup()
 markup.row("Хочу кофе", "Длина очереди?")
 markup.row("Сколько человек передо мной", "Пропустить одного человека вперед", "Выйти из очереди")
@@ -36,3 +41,4 @@ bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
 
     else:
         bot.send_message(message.from_user.id, "Sorry, i dont understand you.")
+'''
