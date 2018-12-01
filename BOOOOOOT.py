@@ -54,3 +54,4 @@ def handle_text(message):
     bot.send.message(message.queue[1],"You are next!!!!!!!!!")
     queue.popleft()
 
+bot.polling(none_stop=True, interval=0)
