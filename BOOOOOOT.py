@@ -9,9 +9,9 @@ bot = telebot.TeleBot("782381386AAFLzg8wce1km24O2sspt_ObKHUwMeA_5yc")
 @bot.message_handler(commands=['start', 'go'])
 def handle_start(message):
         user_markup = telebot.types.ReplyKeyboardMarkup(true, false)
-        user_markup.row("Хочу кофе", "Длина очереди?")
-        user_markup.row("какой я по счету?", "Пропустить одного человека вперед", "Выйти из очереди")
-        bot.send_message(message.chat.id, "Добро пожаловать:", reply_markup=user_markup)
+        user_markup.row("Cofee", "Show_queue")
+        user_markup.row("My_number", "Step_ahead", "Finish")
+        bot.send_message(message.chat.id, "Write smth)):", reply_markup=user_markup)
         
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
