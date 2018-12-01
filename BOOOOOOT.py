@@ -28,12 +28,15 @@ def handle_text(message):
         queue.append(message.from_user.id)
     
     elif message.text =="Step_ahead":
-        bot.send_message(message.from_user.id, "Ok.....")
         N = queue.index(message.from_user.id)
-        queue[N + 1], queue[N] = queue[N], queue[N + 1]
-    
+        if len(queue)>1:
+            queue[N + 1], queue[N] = queue[N], queue[N + 1]
+            bot.send_message(message.from_user.id, "Ok.....")            
+        else:
+            bot.send_message(message.from_user.id,"You one")
     elif message.text =="My_number":
-        bot.send_message(message.from_user.id, "Ok.....Your number is " queue.index(message.from_user.id))
+        bot.send_message(message.from_user.id, "Ok.....Your number is ")
+        bot.send_message(queue.index(message.from_user.id))
         
 
     elif message.text == "Show_queue":
