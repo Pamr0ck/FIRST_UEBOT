@@ -1,5 +1,5 @@
 import telebot
-from collections import dequ
+from collections import deque
 queue = deque()  # массив с возможностью расширения и сжатия
 # queue.append('name')-добавляет ячейку с информацией (name) в массив queue
 # q.popleft()-удаляет нулевой элемент из массива и сдвигает все элементы на 1 влево
