@@ -10,20 +10,16 @@ bot = telebot.TeleBot("782381386AAFLzg8wce1km24O2sspt_ObKHUwMeA_5yc")
 
 
 @bot.message_handler(commands=['start', 'go'])
-def handle_text(message):
-    if message.text == "Hi":
-        bot.send_message(message.from_user.id, "Hello!")
-        keyboard = types.InlineKeyboardMarkup()
-        callback_button = types.InlineKeyboardButton(text="Want a cup of coffee", callback_data="test")
-        keyboard.add(callback_button)
-        bot.send_message(message.chat.id, " сообщение ", reply_markup=keyboard)
-
-
-        markup = types.ReplyKeyboardMarkup()
-        markup.row("Хочу кофе", "Длина очереди?")
-        markup.row("Сколько человек передо мной", "Пропустить одного человека вперед", "Выйти из очереди")
-        bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
-        if message.text == "Хочу кофе":
+def handle_start(message):
+        user_markup = telebot.types.ReplyKeyboardMarkup(true, false)
+        user_markup.row("Хочу кофе", "Длина очереди?")
+        user_markup.row("какой я по счету?", "Пропустить одного человека вперед", "Выйти из очереди")
+        bot.send_message(message.chat.id, "Добро пожаловать:", reply_markup=user_markup)
+@bot.messenge_handler  (commands=['stop'] )
+def handle_start (messenge):
+        
+        
+        
             bot.send_message(message.from_user.id, "Окей, я добавил тебя в очередь!:)")
             # добавить чувака в стэк
 
