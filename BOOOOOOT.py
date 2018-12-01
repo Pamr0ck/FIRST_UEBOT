@@ -11,8 +11,8 @@ bot = telebot.TeleBot("782381386:AAFLzg8wce1km24O2sspt_ObKHUwMeA_5yc")
 @bot.message_handler(commands=['start', 'go'])
 def handle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-    user_markup.row("Coffee", "Show_queue")
-    user_markup.row("My_number", "Step_ahead", "Finish")
+    user_markup.row("Coffee", "Show queue")
+    user_markup.row("My number", "Step ahead", "Finish")
     bot.send_message(message.chat.id, "Write smth)):", reply_markup=user_markup)
 
 
@@ -29,38 +29,61 @@ def handle_text(message):
             bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
             queue.append(message.from_user.id)
             queue_name.append(message.from_user.username)
+        else:
+            bot.send_message(message.from_user.id, "You're already in queue")
 
-    elif message.text == "Step_ahead":
-        N = queue.index(message.from_user.id)
-        if len(queue) > 1 and N != (len(queue) - 1):
+    elif message.text == "Step ahead":
+        try:
+            N = queue.index(message.from_user.id)
+        except ValueError:
+            N = None
+        if len(queue) > 1 and N != (len(queue) - 1) and N!=None:
             queue[N + 1], queue[N] = queue[N], queue[N + 1]
             queue_name[N + 1], queue_name[N] = queue_name[N], queue_name[N + 1]
             bot.send_message(message.from_user.id, "Ok.....")
-        else:
+        elif N!=None and len(queue)==1:
             bot.send_message(message.from_user.id, "You one")
-    elif message.text == "My_number":
-        bot.send_message(message.from_user.id, "Ok.....Your number is ")
-        N = queue.index(message.from_user.id)
-        bot.send_message(message.from_user.id, (N + 1))
-
-
-    elif message.text == "Show_queue":
-        for i in queue_name:
-            bot.send_message(message.from_user.id, str(i))
-
-    elif message.text == "Finish":
-        bot.send_message(message.from_user.id, "Oh, I didn't expect you would be such a one-minute man!")
+        elif N!=None and len(queue)-1==N:
+            bot.send_message(message.from_user.id, "You are last")
+        else:
+            bot.send_message(message.from_user.id, "You not in stack")
+    elif message.text == "My number":
         try:
             N = queue.index(message.from_user.id)
-        except TypeError:
+        except ValueError:
             N = None
-        if len(queue) > 1 and N == 0:
+        if N!=None:
+            bot.send_message(message.from_user.id, "Ok.....Your number is ")
+            bot.send_message(message.from_user.id, (N + 1))
+        else:
+            bot.send_message(message.from_user.id,"You not in stack")
+
+    elif message.text == "Show queue":
+        for i in queue_name:
+            bot.send_message(message.from_user.id, str(i))
+        if len(queue)==0:
+            bot.send_message(message.from_user.id, "Nobody wants to have a cup of coffee, be first!=)")
+    elif message.text == "Finish":
+        try:
+            N = queue.index(message.from_user.id)
+        except ValueError:
+            N = -1
+        if len(queue)==1 and N!=-1:
+            bot.send_message(message.from_user.id, "Oh, I didn't expect you would be such a one-minute man!")
+            queue.popleft()
+            queue_name.popleft()
+        elif len(queue) > 1 and N == 0 and N!=-1:
+            bot.send_message(message.from_user.id, "Oh, I didn't expect you would be such a one-minute man!")
             bot.send_message(queue[1], "You are next!!!!!!!!!")
             queue.popleft()
             queue_name.popleft()
-        else:
+        elif N!=-1:
+            bot.send_message(message.from_user.id, "Ok.....")
             queue.remove(message.from_user.id)
             queue_name.remove(message.from_user.username)
+        else:
+            bot.send_message(message.from_user.id, "You not in stack")
+
 
     else:
         bot.send_message(message.from_user.id, "I can't understand you :c")
