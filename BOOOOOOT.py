@@ -9,7 +9,7 @@ bot = telebot.TeleBot("782381386:AAFLzg8wce1km24O2sspt_ObKHUwMeA_5yc")
 
 @bot.message_handler(commands=['start', 'go'])
 def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
+    user_markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
     user_markup.row("Coffee", "Show_queue")
     user_markup.row("My_number", "Step_ahead", "Finish")
     bot.send_message(message.chat.id, "Write smth)):", reply_markup=user_markup)
