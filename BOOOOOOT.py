@@ -52,7 +52,8 @@ def handle_text(message):
         N = queue.index(message.from_user.id)
         if len(queue)>1 and N!=(len(queue)-1):
             bot.send.message(message.queue[1], "You are next!!!!!!!!!")
-            queue.popleft()
+        queue.popleft()
+        queue_name.popleft()
 
     else: bot.send_message(message.from_user.id, "I can't understand you :c")
 
