@@ -35,19 +35,19 @@ def handle_text(message):
 @bot.message_handler(command=["Coffee"])
 def handle_text(message):
     bot.send_message(message.chat.id, "You are added to the stack, well done! :)")
-    queue.append(chat.id)
+    queue.append(message.chat.id)
 
 
 @bot.message_handler(command=["Step_ahead"])
 def handle_text(message):
     bot.send_message(message.chat.id, "Ok.....")
-    N = queue.index(chat.id)
+    N = queue.index(message.chat.id)
     queue[N + 1], queue[N] = queue[N], queue[N + 1]
 
 
 @bot.message_handler(command=["My_number"])
 def handle_text(message):
-    bot.send_message(message.chat.id, "Ok.....Your number is ", queue.index(chat.id))
+    bot.send_message(message.chat.id, "Ok.....Your number is ", queue.index(message.chat.id))
 
 
 @bot.message_handler(command=["Show_queue"])
