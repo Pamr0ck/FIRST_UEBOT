@@ -1,6 +1,5 @@
 import telebot
-from collections import deque
-
+from collections import dequ
 queue = deque()  # массив с возможностью расширения и сжатия
 # queue.append('name')-добавляет ячейку с информацией (name) в массив queue
 # q.popleft()-удаляет нулевой элемент из массива и сдвигает все элементы на 1 влево
@@ -26,6 +25,7 @@ def handle_text(message):
     elif message.text == "Coffee":
         bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
         queue.append(message.from_user.id)
+        queue_name.append(message.from_user.username)
     
     elif message.text =="Step_ahead":
         N = queue.index(message.from_user.id)
@@ -41,7 +41,7 @@ def handle_text(message):
         
 
     elif message.text == "Show_queue":
-        for i in queue:
+        for i in queue_name:
             bot.send_message(message.from_user.id, i)
       
     elif message.text == "Finish":
