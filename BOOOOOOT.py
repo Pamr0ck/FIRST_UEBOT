@@ -26,7 +26,7 @@ def handle_text(message):
     elif message.text == "Coffee":
         if message.from_user.id not in queue:
             bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
-            queue.append(message.from_user.id)
+            queue.append(from_user.id)
             queue_name.append(message.from_user.username)
     
     elif message.text =="Step_ahead":
@@ -51,7 +51,7 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "Oh, I didn't expect you would be such a one-minute man!")
         N = queue.index(message.from_user.id)
         if len(queue)>1 and N!=(len(queue)-1):
-            bot.send.message(message.from_user.queue[1], "You are next!!!!!!!!!")
+            bot.send.message(message.queue[1], "You are next!!!!!!!!!")
         queue.popleft()
         queue_name.popleft()
 
