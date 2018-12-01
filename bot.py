@@ -1,5 +1,5 @@
 import telebot
-from collection import deque
+from collections import deque
 queue=deque()
 #queue.append('name')-добавляет ячейку с информацией (name) в массив queue
 #q.popleft()-удаляет нулевой элемент из массива и сдвигает все элементы на 1 влево
@@ -17,10 +17,17 @@ def handle_text(message):
     elif message.text == "Cofee":
         bot.send_message(message.form_user.id, "You are added to the stack, well done! :)")
         # добавить чувака в стэк
+        
+    elif message.text == "Step ahead": # пропустить одного человека вперед
+        bot.send_message(message.form_user.id, "Ok...")
+        
+    elif message.text == "My number" : #показать номер человека в очереди
+        
+    elif message.text == "Show the queue" : #показать всю очередь
 
     elif message.text=='Finish':
         bot.send_message(message.from_user.id, "Oh, I didn't expect you to be such a one-minute man!")
-        bot.send_message(message.from_user.id, '')
+        bot.send_message(message.from_user.id, 'you next')
 
 
     else:
