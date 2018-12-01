@@ -23,44 +23,27 @@ def handle_text(message):
     elif message.text == "How are you?" or message.text == "How are u?":
         bot.send_message(message.from_user.id, "Better than you while you haven't any coffee")
 
-    else:
-        bot.send_message(message.from_user.id, "I can't understand you :c")
+    elif message.text == "Coffee":
+        bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
+        queue.append(message.from_user.id)
+    
+    elif message.text =="Step_ahead":
+        bot.send_message(message.from_user.id, "Ok.....")
+        N = queue.index(message.from_user.id)
+        queue[N + 1], queue[N] = queue[N], queue[N + 1]
+    
+    elif message.text =="My_number":
+        bot.send_message(message.from_user.id, "Ok.....Your number is ", queue.index(message.from_user.id))
 
-
-@bot.message_handler(content_types=["How_are_you"])
-def handle_text(message):
-    bot.send_message(message.from_user.id, "I'm fine, thanks. And you?")
-
-
-@bot.message_handler(content_types=["Coffee"])
-def handle_text(message):
-    bot.send_message(message.from_user.id, "You are added to the stack, well done! :)")
-    queue.append(message.from_user.id)
-
-
-@bot.message_handler(content_types=["Step_ahead"])
-def handle_text(message):
-    bot.send_message(message.from_user.id, "Ok.....")
-    N = queue.index(message.from_user.id)
-    queue[N + 1], queue[N] = queue[N], queue[N + 1]
-
-
-@bot.message_handler(content_types=["My_number"])
-def handle_text(message):
-    bot.send_message(message.from_user.id, "Ok.....Your number is ", queue.index(message.from_user.id))
-
-
-@bot.message_handler(content_types=["Show_queue"])
-def handle_text(message):
-    for i in queue:
+    elif message.text == "Show_queue":
+        for i in queue:
         bot.send_message(message.from_user.id, i)
+      
+    elif message.text == "Finish":
+        bot.send_message(message.from_user.id, "Oh, I didn't expect you to be such a one-minute man!")
+        bot.send.message(message.queue[1], "You are next!!!!!!!!!")
+        queue.popleft()
 
-
-@bot.message_handler(content_types=["Finish"])
-def handle_text(message):
-    bot.send_message(message.from_user.id, "Oh, I didn't expect you to be such a one-minute man!")
-    bot.send.message(message.queue[1], "You are next!!!!!!!!!")
-    queue.popleft()
-
+    else: bot.send_message(message.from_user.id, "I can't understand you :c")
 
 bot.polling(none_stop=True, interval=0)
