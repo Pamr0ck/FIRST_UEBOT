@@ -7,6 +7,10 @@ queue=deque() #массив с возможностью расширения и 
 #q.popleft()-удаляет нулевой элемент из массива и сдвигает все элементы на 1 влево
 bot = telebot.TeleBot("782381386AAFLzg8wce1km24O2sspt_ObKHUwMeA_5yc")
 
+@bot.message_handler(commands=['start', 'go'])
+def start_handler(message):
+    bot.send_message(message.chat.id, 'привет')
+bot.polling()
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
