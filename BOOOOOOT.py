@@ -49,8 +49,10 @@ def handle_text(message):
       
     elif message.text == "Finish":
         bot.send_message(message.from_user.id, "Oh, I didn't expect you to be such a one-minute man!")
-        bot.send.message(queue[1], "You are next!!!!!!!!!")
-        queue.popleft()
+        N = queue.index(message.from_user.id)
+        if len(queue)>1 and N!=(len(queue)-1):
+            bot.send.message(message.queue[1], "You are next!!!!!!!!!")
+            queue.popleft()
 
     else: bot.send_message(message.from_user.id, "I can't understand you :c")
 
