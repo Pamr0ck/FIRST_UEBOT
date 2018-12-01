@@ -29,7 +29,7 @@ def handle_text(message):
     
     elif message.text =="Step_ahead":
         N = queue.index(message.from_user.id)
-        if len(queue)>1:
+        if len(queue)>1 and N!=(len(queue)-1):
             queue[N + 1], queue[N] = queue[N], queue[N + 1]
             bot.send_message(message.from_user.id, "Ok.....")            
         else:
