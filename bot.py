@@ -14,7 +14,7 @@ def handle_text(message):
     keyboard = types.InlineKeyboardMarkup()
     callback_button = types.InlineKeyboardButton(text="Want a cup of coffee", callback_data="test")
     keyboard.add(callback_button)
-    ot.send_message(message.chat.id, " сообщение ", reply_markup=keyboard)
+    bot.send_message(message.chat.id, " сообщение ", reply_markup=keyboard)
 
 
 '''        
